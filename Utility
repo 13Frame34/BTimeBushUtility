@@ -1,0 +1,82 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("B Time Bush Utility", "Synapse")
+Players = game:GetService("Players")
+StartPlr = game:GetService("StarterPlayer")
+
+-------------------Phys---------------------
+local phys_tab = Window:NewTab("Physics")
+local phys_sect = phys_tab:NewSection("Physics")
+
+phys_sect:NewButton("FE2 Climb", "FE2 Style Climbing Physics.", function()
+	Humanoid = Players.LocalPlayer.Character.Humanoid
+	RootPart = Humanoid.RootPart
+	Humanoid.Jumping:Connect(function(isJumping)
+		if isJumping then
+			Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, false)
+			RootPart.Velocity = Vector3.new(RootPart.Velocity.X, Humanoid.JumpPower * 1.1, RootPart.Velocity.Z)
+			wait(0.175)
+			Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, true)
+		end
+	end)
+end)
+
+-----------------Scripts-------------------
+
+local script_tab = Window:NewTab("Scripts")
+local script_sect = script_tab:NewSection("Scripts")
+
+script_sect:NewButton("CMD-X", "CMD-X.", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+end)
+
+script_sect:NewButton("INF-Yield", "INF-Yield.", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+end)
+
+script_sect:NewButton("Secure Dex", "Secure Dex.", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+end)
+
+
+script_sect:NewButton("DomainX", "DomainX.", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/DomainX/main/source',true))()
+end)
+
+script_sect:NewButton("2016 Roblox GUI", "Ro Blox 1.", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/specowos/lua-projects/main/small%20projects/project%3A2016/2016raw.lua',true))()
+end)
+
+----------------Lighting-------------------
+
+local light_tab = Window:NewTab("Lighting")
+local light_sect = light_tab:NewSection("Lighting")
+local Lighting = game:GetService("Lighting")
+local gameBloom = Lighting:FindFirstChild("Bloom")
+
+light_sect:NewDropdown("Lighting", "Lighting Technology.", {"Compatibility", "Voxel", "ShadowMap", "Future"}, function(light)
+	if light:match("Compatibility") then
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Compatibility)
+	elseif light:match("Voxel") then
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Voxel)
+	elseif light:match("ShadowMap") then
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.ShadowMap)
+	elseif light:match("Future") then
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Future)
+	end
+	print(light)
+end)
+
+light_sect:NewSlider("EnvDiffuse", "SliderInfo", 1000, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Lighting.EnvironmentDiffuseScale = s / 1000
+end)
+light_sect:NewSlider("EnvSpecular", "SliderInfo", 1000, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+	game.Lighting.EnvironmentSpecularScale = s / 1000
+end)
+
+-------------Bush------------
+local misc_tab = Window:NewTab("Bush Setting")
+local misc_sect = misc_tab:NewSection("Setting")
+
+misc_sect:NewKeybind("Toggle Bush", "Hide/Show Bush", Enum.KeyCode.Q, function()
+	Library:ToggleUI()
+end)
