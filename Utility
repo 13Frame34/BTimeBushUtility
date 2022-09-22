@@ -55,13 +55,13 @@ local gameBloom = Lighting:FindFirstChild("Bloom")
 
 light_sect:NewDropdown("Lighting", "Lighting Technology.", {"Compatibility", "Voxel", "ShadowMap", "Future"}, function(light)
 	if light:match("Compatibility") then
-		getgenv().sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Compatibility)
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Compatibility)
 	elseif light:match("Voxel") then
-		getgenv().sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Voxel)
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Voxel)
 	elseif light:match("ShadowMap") then
-		getgenv().sethiddenproperty(game.Lighting, "Technology", Enum.Technology.ShadowMap)
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.ShadowMap)
 	elseif light:match("Future") then
-		getgenv().sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Future)
+		sethiddenproperty(game.Lighting, "Technology", Enum.Technology.Future)
 	end
 	print(light)
 end)
